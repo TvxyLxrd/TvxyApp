@@ -15,15 +15,15 @@ class RegisterWindow(QtWidgets.QDialog):
         self.layout.addWidget(self.email)
 
         self.username = QtWidgets.QLineEdit(self)
-        self.username.setPlaceholderText("Логин")
+        self.username.setPlaceholderText("Login")
         self.layout.addWidget(self.username)
 
         self.password = QtWidgets.QLineEdit(self)
-        self.password.setPlaceholderText("Пароль")
+        self.password.setPlaceholderText("Password")
         self.password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.layout.addWidget(self.password)
 
-        self.register_button = QtWidgets.QPushButton("Зарегистрироваться", self)
+        self.register_button = QtWidgets.QPushButton("Sign In", self)
         self.register_button.clicked.connect(self.register)
         self.layout.addWidget(self.register_button)
 
@@ -68,31 +68,31 @@ class RegisterWindow(QtWidgets.QDialog):
         password = self.password.text()
 
         if not self.is_valid_email(email):
-            QtWidgets.QMessageBox.warning(self, "Ошибка", "Введите корректный адрес электронной почты.")
+            QtWidgets.QMessageBox.warning(self, "Error", "Please enter a valid email address.")
             return
 
         if len(username) < 4:
-            QtWidgets.QMessageBox.warning(self, "Ошибка", "Логин должен содержать минимум 4 символа.")
+            QtWidgets.QMessageBox.warning(self, "Error", "The login must contain at least 4 characters.")
             return
         
         if len(password) < 4:
-            QtWidgets.QMessageBox.warning(self, "Ошибка", "Пароль должен содержать минимум 4 символа.")
+            QtWidgets.QMessageBox.warning(self, "Error", "Password must contain at least 4 characters.")
             return
 
         if username_exists(username):
-            QtWidgets.QMessageBox.warning(self, "Ошибка", "Логин уже существует.")
+            QtWidgets.QMessageBox.warning(self, "Error", "Login already exists.")
             return
 
         add_user(email, username, password)
-        QtWidgets.QMessageBox.information(self, "Успех", "Регистрация прошла успешно!")
+        QtWidgets.QMessageBox.information(self, "Success", "Registration was successful!")
 
-        self.accept()  #закрываем окно регистрации
-        self.open_login_window()  #окно авторизации после регистрации
+        self.accept()  #closesigninwindow
+        self.open_login_window()  #openauthwindowaftersignin
 
     def open_login_window(self):
-        from login_window import LoginWindow  #отложенный импорт
+        from login_window import LoginWindow  #deferredimport
         self.login_window = LoginWindow()
-        self.login_window.exec_()  #окно авторизации
+        self.login_window.exec_()  #authwindow
 
 if __name__ == "__main__":
     import sys
