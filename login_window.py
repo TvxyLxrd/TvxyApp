@@ -6,29 +6,29 @@ from register_window import RegisterWindow
 class LoginWindow(QtWidgets.QDialog):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Авторизация")
+        self.setWindowTitle("Auth")
         self.setGeometry(100, 100, 300, 250)
         
         self.layout = QtWidgets.QVBoxLayout()
         
         self.username = QtWidgets.QLineEdit(self)
-        self.username.setPlaceholderText("Логин")
+        self.username.setPlaceholderText("Login")
         self.layout.addWidget(self.username)
 
         self.password = QtWidgets.QLineEdit(self)
-        self.password.setPlaceholderText("Пароль")
+        self.password.setPlaceholderText("Password")
         self.password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.layout.addWidget(self.password)
 
-        self.login_button = QtWidgets.QPushButton("Войти", self)
+        self.login_button = QtWidgets.QPushButton("Log In", self)
         self.login_button.clicked.connect(self.login)
         self.layout.addWidget(self.login_button)
 
-        self.register_button = QtWidgets.QPushButton("Регистрация", self)
+        self.register_button = QtWidgets.QPushButton("Sign In", self)
         self.register_button.clicked.connect(self.open_register_window)
         self.layout.addWidget(self.register_button)
 
-        self.guest_button = QtWidgets.QPushButton("Гостевой режим", self)
+        self.guest_button = QtWidgets.QPushButton("Guest mode", self)
         self.guest_button.clicked.connect(self.guest_mode)
         self.layout.addWidget(self.guest_button)
 
@@ -73,7 +73,7 @@ class LoginWindow(QtWidgets.QDialog):
             self.shopping_list_window = ShoppingListWindow(user_id=user[0])
             self.shopping_list_window.show()
         else:
-            QtWidgets.QMessageBox.warning(self, "Ошибка", "Неверный логин или пароль.")
+            QtWidgets.QMessageBox.warning(self, "Error:", "Incorrect login or password.")
 
     def open_register_window(self):
         self.reject() 
@@ -82,7 +82,7 @@ class LoginWindow(QtWidgets.QDialog):
 
     def guest_mode(self):
         self.accept()
-        self.shopping_list_window = ShoppingListWindow(user_id=None)  # гостевой
+        self.shopping_list_window = ShoppingListWindow(user_id=None)  #gostevoy
         self.shopping_list_window.show()
 
 if __name__ == "__main__":
