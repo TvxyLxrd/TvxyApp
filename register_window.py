@@ -86,13 +86,13 @@ class RegisterWindow(QtWidgets.QDialog):
         add_user(email, username, password)
         QtWidgets.QMessageBox.information(self, "Успех", "Регистрация прошла успешно!")
 
-        self.accept()  # Закрываем окно регистрации
-        self.open_login_window()  # Открываем окно авторизации после закрытия регистрации
+        self.accept()  #закрываем окно регистрации
+        self.open_login_window()  #окно авторизации после регистрации
 
     def open_login_window(self):
-        from login_window import LoginWindow  # Отложенный импорт
+        from login_window import LoginWindow  #отложенный импорт
         self.login_window = LoginWindow()
-        self.login_window.exec_()  # Открываем окно авторизации
+        self.login_window.exec_()  #окно авторизации
 
 if __name__ == "__main__":
     import sys
