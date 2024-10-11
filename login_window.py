@@ -76,13 +76,13 @@ class LoginWindow(QtWidgets.QDialog):
             QtWidgets.QMessageBox.warning(self, "Ошибка", "Неверный логин или пароль.")
 
     def open_register_window(self):
-        self.reject()  # Закрываем текущее окно авторизации
+        self.reject() 
         self.register_window = RegisterWindow()
-        self.register_window.exec_()  # Открываем окно регистрации
+        self.register_window.exec_()
 
     def guest_mode(self):
         self.accept()
-        self.shopping_list_window = ShoppingListWindow(user_id=None)  # Гостевой режим
+        self.shopping_list_window = ShoppingListWindow(user_id=None)  # гостевой
         self.shopping_list_window.show()
 
 if __name__ == "__main__":
