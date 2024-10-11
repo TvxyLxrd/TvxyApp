@@ -82,7 +82,7 @@ class LoginWindow(QtWidgets.QDialog):
 
     def guest_mode(self):
         self.accept()
-        self.shopping_list_window = ShoppingListWindow(user_id=None)  #gostevoy
+        self.shopping_list_window = ShoppingListWindow(user_id=None)  #guest
         self.shopping_list_window.show()
 
 if __name__ == "__main__":
