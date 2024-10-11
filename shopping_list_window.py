@@ -12,17 +12,17 @@ class ShoppingListWindow(QtWidgets.QWidget):
         self.input_layout = QtWidgets.QHBoxLayout()
 
         self.name_input = QtWidgets.QLineEdit(self)
-        self.name_input.setPlaceholderText("Название товара")
+        self.name_input.setPlaceholderText("Name")
         self.name_input.setStyleSheet("padding: 5px; border: 1px solid #ccc; border-radius: 5px;")
         self.input_layout.addWidget(self.name_input)
 
         self.quantity_input = QtWidgets.QLineEdit(self)
-        self.quantity_input.setPlaceholderText("Количество")
+        self.quantity_input.setPlaceholderText("Quantity")
         self.quantity_input.setStyleSheet("padding: 5px; border: 1px solid #ccc; border-radius: 5px;")
         self.input_layout.addWidget(self.quantity_input)
 
         self.price_input = QtWidgets.QLineEdit(self)
-        self.price_input.setPlaceholderText("Цена")
+        self.price_input.setPlaceholderText("Price")
         self.price_input.setStyleSheet("padding: 5px; border: 1px solid #ccc; border-radius: 5px;")
         self.input_layout.addWidget(self.price_input)
 
@@ -51,7 +51,7 @@ class ShoppingListWindow(QtWidgets.QWidget):
         self.setLayout(self.layout)
 
         if self.user_id is None:
-            self.temp_items = []  #gostevoymassiv
+            self.temp_items = []  #guestarray
 
     def add_item(self):
         name_text = self.name_input.text().strip()
@@ -59,7 +59,7 @@ class ShoppingListWindow(QtWidgets.QWidget):
         price_text = self.price_input.text().strip()
 
         if name_text and quantity_text and price_text:
-            item_text = f"{name_text} (Количество: {quantity_text}, Цена: {price_text})"
+            item_text = f"{name_text} (Qty: {quantity_text}, Price: {price_text})"
             self.add_item_widget(item_text)
 
             self.name_input.clear()
