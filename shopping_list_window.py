@@ -8,8 +8,7 @@ class ShoppingListWindow(QtWidgets.QWidget):
         self.setGeometry(100, 100, 400, 300)
 
         self.layout = QtWidgets.QVBoxLayout()
-
-        # Создаем горизонтальный layout для ввода и кнопки "Добавить"
+        
         self.input_layout = QtWidgets.QHBoxLayout()
 
         self.name_input = QtWidgets.QLineEdit(self)
@@ -27,7 +26,7 @@ class ShoppingListWindow(QtWidgets.QWidget):
         self.price_input.setStyleSheet("padding: 5px; border: 1px solid #ccc; border-radius: 5px;")
         self.input_layout.addWidget(self.price_input)
 
-        # Кнопка "Добавить"
+        #addbtn
         self.add_button = QtWidgets.QPushButton(self)
         self.add_button.setIcon(QtGui.QIcon(QtGui.QPixmap('icons/add.png')))
         self.add_button.setStyleSheet("padding: 5px 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px;")
@@ -36,12 +35,12 @@ class ShoppingListWindow(QtWidgets.QWidget):
 
         self.layout.addLayout(self.input_layout)
 
-        # Создаем QScrollArea для прокрутки списка
+        #scrll
         self.scroll_area = QtWidgets.QScrollArea(self)
         self.scroll_area.setWidgetResizable(True)
         self.scroll_area.setStyleSheet("border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;")
 
-        # Создаем контейнер для элементов списка
+        #list
         self.items_container = QtWidgets.QWidget()
         self.items_layout = QtWidgets.QVBoxLayout(self.items_container)
         self.items_layout.setAlignment(QtCore.Qt.AlignTop)
@@ -52,7 +51,7 @@ class ShoppingListWindow(QtWidgets.QWidget):
         self.setLayout(self.layout)
 
         if self.user_id is None:
-            self.temp_items = []  # массив для гостевого
+            self.temp_items = []  #gostevoymassiv
 
     def add_item(self):
         name_text = self.name_input.text().strip()
@@ -78,23 +77,23 @@ class ShoppingListWindow(QtWidgets.QWidget):
         item_label.setStyleSheet("padding: 5px; border: 1px solid #ccc; border-radius: 5px;")
         item_layout.addWidget(item_label)
 
-        # Кнопка "Удалить"
+        #deletebtn
         remove_button = QtWidgets.QPushButton(self)
         remove_button.setIcon(QtGui.QIcon(QtGui.QPixmap('icons/remove.png')))
         remove_button.setStyleSheet("padding: 5px 10px; background-color: #f44336; color: white; border: none; border-radius: 5px;")
         remove_button.clicked.connect(lambda: self.remove_item(item_widget))
         item_layout.addWidget(remove_button)
 
-        # Кнопка "Зачеркнуть"
+        #markbtn
         cross_button = QtWidgets.QPushButton(self)
         cross_button.setIcon(QtGui.QIcon(QtGui.QPixmap('icons/mark.png')))
         cross_button.setStyleSheet("padding: 5px 10px; background-color: #ffeb3b; color: black; border: none; border-radius: 5px;")
         cross_button.clicked.connect(lambda: self.cross_item(item_label))
         item_layout.addWidget(cross_button)
 
-        item_layout.addStretch()  # Добавляем растяжение для выравнивания кнопок справа
+        item_layout.addStretch()  #btnonrightside
 
-        # Добавляем виджет в контейнер
+        #listwidget
         self.items_layout.addWidget(item_widget)
 
     def remove_item(self, item_widget):
@@ -108,11 +107,11 @@ class ShoppingListWindow(QtWidgets.QWidget):
     def cross_item(self, item_label):
         current_text = item_label.text()
         if "~~" not in current_text:
-            item_label.setText(f"~~{current_text}~~")  # Зачеркиваем текст
-            item_label.setStyleSheet("color: gray;")  # Меняем цвет текста на серый
+            item_label.setText(f"~~{current_text}~~")  #marktext
+            item_label.setStyleSheet("color: gray;")  #clrswap
         else:
             item_label.setText(current_text.replace("~~", ""))
-            item_label.setStyleSheet("color: black;")  # Возвращаем цвет текста
+            item_label.setStyleSheet("color: black;")  #backclr
 
     def closeEvent(self, event):
         if self.user_id is None:
